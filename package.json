@@ -1,0 +1,52 @@
+{
+  "name": "ws-client",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "saratonite.github.io/ws-client",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron . 5200",
+    "build": "electron-builder  --linux",
+    "build:win": "electron-builder  --win"
+  },
+  "build": {
+    "appId": "ws-client.mirror",
+    "directories": {
+      "output": "release/"
+    },
+    "win": {
+      "signingHashAlgorithms": [
+        "sha1",
+        "sha256"
+      ],
+      "target": [
+        "nsis"
+      ]
+    },
+    "linux": {
+      "target": [
+        "deb"
+      ],
+      "category": "Development"
+    },
+    "nsis": {
+      "oneClick": "false",
+      "perMachine": "true",
+      "allowToChangeInstallationDirectory": "true",
+      "license": "license.txt",
+      "deleteAppDataOnUninstall": "true"
+    }
+  },
+  "keywords": [],
+  "author": {
+    "name": "Sarath",
+    "email": "saratonite@gmx.com"
+  },
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "electron": "^4.0.1",
+    "electron-builder": "^20.38.4"
+  }
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<div>
+
+		<input id="port" type="number"/>
+		<button id="connect">Connect</button>
+		<button id="disconnect">Disconnect</button>
+	</div>
+	<div>
+		<input type="text" value="Hello World" />
+		<button>Send</button>
+	</div>
+	
+</head>
+<body>
+<script type="text/javascript">
+const args = require('electron').remote.process.argv
+const port = args[2] || 5200;
+
+try {
+
+	const socket = new WebSocket(`ws://localhost:${port}`);
+	// Connection opened
+	socket.addEventListener('open', function (event) {
+		socket.send('Hello Server!');
+	});
+	// Listen for messages
+	socket.addEventListener('message', function (event) {
+		console.log('Message from server ', event.data);
+	});
+}
+catch(err) {
+	console.log('Error : ', err)
+}
+
+
+
+var button = document.querySelector('button')
+var input = document.querySelector('input')
+
+button.addEventListener('click', () => {
+
+	socket.send(input.value)
+})
+</script>
+</body>
+</html>
