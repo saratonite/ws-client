@@ -30,6 +30,10 @@ try {
 	socket.addEventListener('message', function (event) {
 		console.log('Message from server ', event.data);
 	});
+
+	socket.addEventListener('close', function() {
+		console.log('Scocket connection closed')
+	})
 }
 catch(err) {
 	console.log('Error : ', err)
